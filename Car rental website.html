@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveEasy - Car Rental</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #111;
+            color: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: #ffcc00;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(
+                rgba(0,0,0,0.6),
+                rgba(0,0,0,0.6)
+            ),
+            url("https://images.unsplash.com/photo-1502877338535-766e1452684a")
+            center/cover;
+
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .hero button {
+            padding: 14px 30px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background-color: #ffaa00;
+        }
+
+        /* Booking Section */
+        .booking {
+            background-color: white;
+            width: 85%;
+            margin: -50px auto 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .booking h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .booking-form button {
+            background-color: #111;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .booking-form button:hover {
+            background-color: #ffcc00;
+            color: #111;
+        }
+
+        /* Cars Section */
+        .cars {
+            padding: 40px 8%;
+        }
+
+        .cars h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .car-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .car-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .car-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e6a900;
+        }
+
+        .rent-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background-color: #111;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .rent-btn:hover {
+            background-color: #ffcc00;
+            color: #111;
+        }
+
+        /* About */
+        .about {
+            background-color: #111;
+            color: white;
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 50px 10%;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            margin: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .car-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .booking-form {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 35px;
+            }
+
+            .car-container,
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <h1>DriveEasy</h1>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#cars">Cars</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div>
+            <h2>Rent Your Dream Car</h2>
+            <p>Affordable, Comfortable and Reliable Cars</p>
+            <button onclick="document.getElementById('cars').scrollIntoView()">
+                Explore Cars
+            </button>
+        </div>
+    </section>
+
+
+    <!-- Booking Section -->
+    <section class="booking">
+
+        <h2>Book Your Car</h2>
+
+        <div class="booking-form">
+
+            <input type="text" placeholder="Pick-up Location">
+
+            <input type="date">
+
+            <input type="date">
+
+            <select>
+                <option>Select Car Type</option>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Luxury</option>
+            </select>
+
+            <button onclick="alert('Please select your car to continue!')">
+                Search Cars
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Cars Section -->
+    <section class="cars" id="cars">
+
+        <h2>Available Cars</h2>
+
+        <div class="car-container">
+
+            <!-- Car 1 -->
+            <div class="car-card">
+
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2"
+                     alt="BMW Car">
+
+                <div class="car-info">
+
+                    <h3>BMW 3 Series</h3>
+
+                    <p>Automatic • 5 Seats • Petrol</p>
+
+                    <div class="price">₹5,000 / Day</div>
+
+                    <button class="rent-btn"
+                            onclick="alert('BMW 3 Series selected!')">
+                        Rent Now
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Car 2 -->
+            <div class="car-card">
+
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d"
+                     alt="Chevrolet Car">
+
+                <div class="car-info">
+
+                    <h3>Chevrolet Camaro</h3>
+
+                    <p>Automatic • 4 Seats • Petrol</p>
+
+                    <div class="price">₹6,500 / Day</div>
+
+                    <button class="rent-btn"
+                            onclick="alert('Chevrolet Camaro selected!')">
+                        Rent Now
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Car 3 -->
+            <div class="car-card">
+
+                <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c"
+                     alt="Mercedes Car">
+
+                <div class="car-info">
+
+                    <h3>Mercedes-Benz</h3>
+
+                    <p>Automatic • 5 Seats • Petrol</p>
+
+                    <div class="price">₹7,500 / Day</div>
+
+                    <button class="rent-btn"
+                            onclick="alert('Mercedes-Benz selected!')">
+                        Rent Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+
+        <h2>About DriveEasy</h2>
+
+        <p>
+            DriveEasy is a simple and reliable car rental service.
+            We provide a wide range of cars at affordable prices.
+            Choose your car, select your rental dates and enjoy your journey.
+        </p>
+
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+
+        <h2>Contact Us</h2>
+
+        <p>📞 Phone: +91 98765 43210</p>
+
+        <p>📧 Email: support@driveeasy.com</p>
+
+        <p>📍 Location: Coimbatore, Tamil Nadu</p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>© 2026 DriveEasy Car Rentals. All Rights Reserved.</p>
+
+    </footer>
+
+</body>
+</html>
